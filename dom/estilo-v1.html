@@ -1,0 +1,49 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<style>
+    #app {
+        display: flex;
+        justify-content: space-around;
+    }
+    .demo {
+        width: 100px;
+        height: 100px;
+
+        background: gray;
+    }
+
+    .c1 {
+        background: deeppink;
+    }
+
+    .c2 {
+        background: crimson;
+    }
+
+    .c3 {
+        background: darkslategrey;
+    }
+</style>
+
+<div id="app">
+    <div class="demo" 
+        :class="{ c1: aplicarC1 }"
+        @click="aplicarC1 = !aplicarC1"></div>
+    <div class="demo"
+        :class="{ c2: aplicarC2 }"
+        @click="aplicarC2 = !aplicarC2"></div>
+    <div class="demo"
+        :class="{ c3: aplicarC3 }"
+        @click="aplicarC3 = !aplicarC3"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+           aplicarC1: false,
+           aplicarC2: false,
+           aplicarC3: false 
+        }
+    })
+</script>

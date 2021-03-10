@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matador de Monstros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" 
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0daa17b09c.js" 
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>    
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="panel lifebars">
+                <div class="lifebar-container">
+                    <p>Player</p>
+                    <div class="lifebar">
+                        <div class="life"
+                            :class="{danger: playerLife < 20}"
+                            :style="{width: playerLife + '%'}"
+                        ></div>
+                    </div>
+                    <span>{{ playerLife }}%</span>
+                </div>
+                <div class="lifebar-container">
+                    <p>Monster</p>
+                    <div class="lifebar">
+                        <div class="life"
+                            :class="{danger: monsterLife < 20}"
+                            :style="{width: monsterLife + '%'}"
+                        ></div>
+                    </div>  
+                    <span>{{ monsterLife }}%</span>
+                </div>
+            </div>
+            <div class="panel result"
+                v-if="hasResult"    
+            >
+                <div class="winner"
+                    v-if="monsterLife == 0"
+                >
+                    <i class="fas fa-wine-bottle"></i>
+                    <h5>VOCÊ GANHOU!</h5>
+                </div>
+                
+                <div class="loser"
+                    v-else
+                >
+                    <i class="fas fa-sad-tear"></i>
+                    <h5>VOCÊ PERDEU!</h5>
+                </div>                
+                
+            </div>
+            <div class="panel controls">
+                <template v-if="running">
+                    <button class="btn btn-attack"
+                        @click="attack(false)"
+                    >ATAQUE</button>
+
+                    <button class="btn btn-special-attack"
+                        @click="attack(true)"
+                    >ATAQUE ESPECIAL</button>
+
+                    <button class="btn btn-cure"
+                        @click="healAndHurt"
+                    >CURAR</button>
+
+                    <button class="btn btn-giveup"
+                        @click="running = false, logs = []">DESISTIR</button>
+                </template>               
+                <button v-else 
+                    @click="startGame"
+                    class="btn btn-restart"
+                >{{ logs.length ? 'REINICIAR JOGO' : 'INICIAR JOGO' }}</button>
+            </div>
+            <div v-if="logs.length" 
+                class="panel logs">
+                <div v-for="log in logs" 
+                    :class="log.clss">{{ log.txt }}</div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
