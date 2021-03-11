@@ -1,0 +1,36 @@
+Arguments: 
+  /home/floyd/.nvm/versions/node/v14.16.0/bin/node /home/floyd/.nvm/versions/node/v14.16.0/bin/yarn add global @vue-cli
+
+PATH: 
+  /home/floyd/.zinit/polaris/bin:/home/floyd/.zplug/bin:/home/floyd/.nvm/versions/node/v14.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@vue-cli: Request "https://registry.yarnpkg.com/@vue-cli" returned a 405
+      at Request.params.callback [as _callback] (/home/floyd/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:66997:18)
+      at Request.self.callback (/home/floyd/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/home/floyd/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/home/floyd/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
