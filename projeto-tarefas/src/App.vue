@@ -54,13 +54,11 @@ export default {
 	components: { Task },
 	data() {
 		return {
-			tasks: [],
+			tasks: JSON.parse(localStorage.getItem('@task-manager-tasks')) ? JSON.parse(localStorage.getItem('@task-manager-tasks')) : [],
 			progress: 0
 		}
 	},
-	created() {			
-		this.tasks = JSON.parse(localStorage.getItem('@task-manager-tasks'))
-
+	created() {		
         stateBus.onChangeTaskReceived(task => {
 			let tasks = [...this.tasks];
 
@@ -86,9 +84,7 @@ export default {
 			const tasks = [...this.tasks];
 
 			this.tasks.push(task)
-
-			console.log(typeof this.tasks);
-
+			
 			localStorage.setItem('@task-manager-tasks', JSON.stringify(this.tasks))
 
 			document.forms["form-tasks"].reset();
