@@ -57,18 +57,23 @@ export default {
 			tasks: JSON.parse(localStorage.getItem('@task-manager-tasks')) ? JSON.parse(localStorage.getItem('@task-manager-tasks')) : [],
 			progress: 0
 		}
-	},
+	},	
 	created() {		
         stateBus.onChangeTaskReceived(task => {
 			let tasks = [...this.tasks];
 
 			tasks[task].done = !this.tasks[task].done
 
-            this.tasks = tasks
+            this.tasks = tasks		
 
 			this.calcProgress();
+			
+			localStorage.setItem('@task-manager-tasks', JSON.stringify(this.tasks))			
         })
     },
+	beforeMount() {
+		this.calcProgress();
+	},
 	methods: {
 		toUppercase(e) {
 			e.target.value = e.target.value.toUpperCase();
@@ -84,7 +89,7 @@ export default {
 			const tasks = [...this.tasks];
 
 			this.tasks.push(task)
-			
+
 			localStorage.setItem('@task-manager-tasks', JSON.stringify(this.tasks))
 
 			document.forms["form-tasks"].reset();
@@ -96,7 +101,7 @@ export default {
 
 			const filteredTasks = this.tasks.filter(task => task.done === true);
 
-			this.progress = Math.round(part * filteredTasks.length);
+			this.progress = isNaN(Math.round(part * filteredTasks.length)) ? 0 : Math.round(part * filteredTasks.length);
 		}
 	}
 }
